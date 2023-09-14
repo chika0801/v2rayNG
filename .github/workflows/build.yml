@@ -38,11 +38,11 @@ jobs:
         path: 'AndroidLibXrayLite'
 
     - name: Checkout Xray-core repository
+      if: ${{ inputs.XRAY_VERSION == 'main' }}
       uses: actions/checkout@v4
       with:
         repository: 'xtls/xray-core'
         path: 'xray-core'
-        fetch-depth: '0'
 
     - name: Setup Java
       uses: actions/setup-java@v3
