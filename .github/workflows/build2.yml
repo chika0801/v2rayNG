@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       COMMIT_HASH:
-        description: "Fill in Xray-core's commit hash or short hash."
+        description: "Fill in Xray-core's commit hash or short hash. Default: latest commit."
         required: true
         type: string
         default: 'HEAD~0'
