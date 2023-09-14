@@ -65,14 +65,15 @@ jobs:
       uses: android-actions/setup-android@v2
 
     - name: Get xray short sha
+      if: ${{ inputs.XRAY_VERSION == 'main' }}
       run: | 
         cd xray-core
-        echo "XRAY_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        echo "XRAY_SHA=@$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
     - name: Build dependencies
       run: |
         cd AndroidLibXrayLite
-        sed -i "s/v2core.Version())/v2core.Version() + \"@${{ env.XRAY_SHA }}\")/" libv2ray_main.go
+        sed -i "s/v2core.Version())/v2core.Version() + \"${{ env.XRAY_SHA }}\")/" libv2ray_main.go
         go get github.com/xtls/xray-core@${{ inputs.XRAY_VERSION }}
         gomobile init
         go mod tidy -v
