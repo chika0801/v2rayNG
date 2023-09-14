@@ -1,7 +1,7 @@
 # build.yml forked from github.com/Fangliding/v2rayNG
 # thanks @Fangliding @nagi_ly
 
-name: Build APK
+name: Build APK (Specify the commit)
 
 on:
   workflow_dispatch:
