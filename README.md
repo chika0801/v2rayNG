@@ -20,7 +20,7 @@ keytool -genkey -v -keystore keystore.jks -alias chika -storepass lovelive -keyp
 openssl base64 < keystore.jks | tr -d '\n' | tee keystore_base64.txt
 ```
 
-4. Fork本仓库后，点击 `Settings` —> `Secrets and variables` —> `Actions` —> `Add repository secret`
+4. Fork本仓库后，点击 `Settings` —> `Secrets and variables` —> `Actions` —> `New repository secret`
 
 5. 新增以下项目，替换成你的值
 
