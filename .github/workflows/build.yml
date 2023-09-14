@@ -74,7 +74,7 @@ jobs:
       run: |
         cd AndroidLibXrayLite
         sed -i "s/v2core.Version())/v2core.Version() + \"${{ env.XRAY_SHA }}\")/" libv2ray_main.go
-        go get github.com/xtls/xray-core@${{ inputs.XRAY_VERSION }}
+        go get github.com/xtls/xray-core${{ inputs.XRAY_VERSION }}
         gomobile init
         go mod tidy -v
         gomobile bind -v -androidapi 21 -ldflags='-s -w' ./
