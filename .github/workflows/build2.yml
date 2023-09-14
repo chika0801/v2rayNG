@@ -1,15 +1,15 @@
 # build.yml forked from github.com/Fangliding/v2rayNG
 # thanks @Fangliding @nagi_ly
 
-name: Build APK (Self-selected commit)
+name: Build APK
 
 on:
   workflow_dispatch:
     inputs:
-      COMMIT_HASH:
-        description: "COMMIT_HASH: Xray-core's commit hash."
-        required: true
-        type: string
+      #COMMIT_HASH:
+        #description: "COMMIT_HASH: Xray-core's commit hash."
+        #required: true
+        #type: string
       REVISION_IDENTIFIER:
         description: 'REVISION_IDENTIFIER: which is a 12-character prefix of the commit hash.'
         required: true
@@ -64,16 +64,16 @@ jobs:
     - name: Setup Android
       uses: android-actions/setup-android@v2
 
-    - name: Get xray short sha
-      run: | 
-        cd xray-core
-        git checkout ${{ inputs.COMMIT_HASH }}
-        echo "XRAY_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+    #- name: Get xray short sha
+      #run: | 
+        #cd xray-core
+        #git checkout ${{ inputs.COMMIT_HASH }}
+        #echo "XRAY_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
     - name: Build dependencies
       run: |
         cd AndroidLibXrayLite
-        sed -i "s/v2core.Version())/v2core.Version() + \"@${{ env.XRAY_SHA }}\")/" libv2ray_main.go
+        #sed -i "s/v2core.Version())/v2core.Version() + \"@${{ env.XRAY_SHA }}\")/" libv2ray_main.go
         go get github.com/xtls/xray-core@${{ inputs.REVISION_IDENTIFIER }}
         gomobile init
         go mod tidy -v
