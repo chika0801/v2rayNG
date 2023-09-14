@@ -10,6 +10,7 @@ on:
         description: "Fill in Xray-core's commit hash or short hash."
         required: true
         type: string
+        default: 'HEAD~0'
 
 env:
   ALIAS: ${{ secrets.ALIAS }}
@@ -60,11 +61,17 @@ jobs:
     - name: Setup Android
       uses: android-actions/setup-android@v2
 
+    - name: Get xray short sha
+      run: | 
+        cd xray-core
+        git checkout ${{ inputs.COMMIT_HASH }}
+        echo "XRAY_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
     - name: Build dependencies
       run: |
         cd AndroidLibXrayLite
-        sed -i "s/v2core.Version())/v2core.Version() + \"@${{ inputs.COMMIT_HASH }}\")/" libv2ray_main.go
-        go get github.com/xtls/xray-core@${{ inputs.COMMIT_HASH }}
+        sed -i "s/v2core.Version())/v2core.Version() + \"@${{ env.XRAY_SHA }}\")/" libv2ray_main.go
+        go get github.com/xtls/xray-core@${{ env.XRAY_SHA }}
         gomobile init
         go mod tidy -v
         gomobile bind -v -androidapi 21 -ldflags='-s -w' ./
