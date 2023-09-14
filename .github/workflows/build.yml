@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       XRAY_VERSION:
-        description: "Select Xray-core's version: main (latest commit) or latest (release version)"
+        description: "Select Xray-core's version: main (latest commit) or latest (release version)."
         required: true
         type: choice
         default: 'main'
