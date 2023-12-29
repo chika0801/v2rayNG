@@ -4,7 +4,7 @@
 
 # Generate apk signing certificate with keytool
 
-1. Download [**JDK Development Kit**](https://download.oracle.com/java/20/latest/jdk-20_windows-x64_bin.zip).
+1. Download [**JDK Development Kit**](https://www.oracle.com/java/technologies/downloads/).
 
 2. Unzip the file, right-click in the `\bin` folder, select Open in Terminal, and paste the command in the Command Prompt window.
 
@@ -33,7 +33,7 @@ openssl base64 < keystore.jks | tr -d '\n' | tee keystore_base64.txt
 
 # 使用keytool生成apk签名证书
 
-1. 下载 [**JDK Development Kit**](https://download.oracle.com/java/20/latest/jdk-20_windows-x64_bin.zip)。
+1. 下载 [**JDK Development Kit**](https://www.oracle.com/java/technologies/downloads/)。
 
 2. 解压后在 `\bin` 文件夹中点击右键，选择在终端中打开，在命令提示符窗口中粘贴命令。
 
