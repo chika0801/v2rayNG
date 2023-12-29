@@ -77,7 +77,7 @@ jobs:
     - name: Build dependencies
       run: |
         cd AndroidLibXrayLite
-        sed -i "s/v2core.Version())/v2core.Version() + \"${{ env.XRAY_SHA }}\")/" libv2ray_main.go
+        sed -i "s/v2core.Version())/v2core.Version() + \"${{ env.XRAY_SHA }} Go ${{ env.GO_VERSION }}\")/" libv2ray_main.go
         go get github.com/xtls/xray-core@${{ inputs.XRAY_VERSION }}
         gomobile init
         go mod tidy -v
